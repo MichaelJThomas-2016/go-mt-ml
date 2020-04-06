@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt";
-	"errors"
+	"errors",
+	"math"
 )
 
 func vectorAdd(v1,v2  []float32) ([]float32,error){
@@ -63,3 +64,41 @@ func vectorMean(vectors [][]float32) ([]float32){
 	n := float32(len(vectors))
 	return scalarMultiply(1.0/n,vectorSum(vectors))
 }
+
+func dotProduct(v1,w1 []float32) (float32) {
+	resultVector := make([]float32,30)
+	for idx,_ := range v1 {
+		elem1 := v1[idx]
+		elem2 := w1[idx]
+		resultElm := elem1 + elem2
+
+		resultVector = append(resultVector,resultElm)
+	}
+	return sum(resultVector)
+}
+func sumOfSquares(vector []float32) ([]float32) {
+	return dotProduct(vector,vector)
+
+}
+
+func squaredDistance(v,w []float32) ([]float32){
+	return sumOfSquares(vectorSub(v,w))
+}
+
+func distance(v,w []float32){
+
+}
+
+//TODO: Fgure this out later
+type Vector struct {
+	vector []float32
+}
+
+func (vector *Vector) sumOfSquares(){
+	return dotProduct(vector.vector)
+}
+
+func (vector *Vector) magnitude(){
+	return math.Sqrt(Vector.sumOfSquares(Vector.vector))
+}
+
